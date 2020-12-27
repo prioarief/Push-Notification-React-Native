@@ -9,6 +9,7 @@ const persistConfig = {
   //...
   key: 'root',
   storage: AsyncStorage,
+  whiteList : ['auth']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
