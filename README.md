@@ -1,2 +1,2 @@
-# React-Native-Boiler-Plate
+# React-Native-Push-Notification
 include redux, svg, navigation and dll
