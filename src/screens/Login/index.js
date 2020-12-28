@@ -11,7 +11,7 @@ import {Button, Input} from '../../components';
 import {Login as LoginAct} from '../../redux/actions/auth';
 import {colors} from '../../utils';
 import Geolocation from '@react-native-community/geolocation';
-import auth from '../../redux/reducers/auth';
+
 
 const Login = ({navigation, LoginAct, auth}) => {
   const [Name, setName] = React.useState('');
@@ -28,13 +28,16 @@ const Login = ({navigation, LoginAct, auth}) => {
       latitude: Latitude,
       longitude: Longitude,
     };
+    
 
     LoginAct(data);
     if (Username === 'demo' && Password === 'demo') {
+      // showNotify('Login', 'Login Suksess')
       return navigation.replace('MainApp');
+    }else{
+      ToastAndroid.show('Username or password is wrong', ToastAndroid.LONG);
     }
 
-    ToastAndroid.show('Username or password is wrong', ToastAndroid.LONG);
   };
 
   React.useEffect(() => {
