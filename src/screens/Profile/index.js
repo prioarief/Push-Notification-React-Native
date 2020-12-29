@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {Button, Maps} from '../../components';
 import {colors} from '../../utils';
 import {UploadFoto as upload} from '../../redux/actions/auth';
+import {showNotify, removeNotify} from '../../utils'
 
 const Profile = ({auth, upload}) => {
   const [Foto, setFoto] = React.useState(auth.data.foto || null);
@@ -18,6 +19,7 @@ const Profile = ({auth, upload}) => {
     launchCamera(options, (response) => {
       setFoto(response.uri);
       upload(response.uri);
+      showNotify('Success', 'Upload Success')
     });
   };
   return (
