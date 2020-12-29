@@ -32,7 +32,7 @@ const Home = ({auth}) => {
 
         <View>
           <Text style={styles.welcome}>Welcome</Text>
-          <Text style={styles.welcome}>Prio Arief Gunawan</Text>
+          <Text style={styles.welcome}>{auth.data.name}</Text>
         </View>
       </View>
       <View style={{margin: 15}}>
