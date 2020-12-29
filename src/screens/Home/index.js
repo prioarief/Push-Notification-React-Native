@@ -1,14 +1,35 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
 import {colors} from '../../utils';
 
-const Home = () => {
+const Home = ({auth}) => {
+  const [Foto, setFoto] = React.useState(auth.data.foto || null);
+
+  React.useEffect(() => {
+    setFoto(auth.data.foto)
+  }, [auth.data.foto])
+
+  console.log(Foto)
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Icon name="user-circle" size={100} color={colors.light} />
-        {/* <Image source={User} style={{width: 150, height: 150}} /> */}
+        {Foto === null || !Foto ? (
+          <Icon name="user-circle" size={100} color={colors.light} />
+        ) : (
+          <Image
+            source={{uri: Foto}}
+            style={{
+              width: 120,
+              height: 120,
+              borderColor: colors.light,
+              borderWidth: 1,
+              borderRadius: 120 / 2,
+            }}
+          />
+        )}
+
         <View>
           <Text style={styles.welcome}>Welcome</Text>
           <Text style={styles.welcome}>Prio Arief Gunawan</Text>
@@ -21,8 +42,10 @@ const Home = () => {
     </View>
   );
 };
-
-export default Home;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(Home);
 
 const styles = StyleSheet.create({
   welcome: {
